@@ -3,7 +3,11 @@ import './App.css';
 import {Items} from "./Items";
 
 function App() {
-  return <Items/>
+  return (
+      <div>
+        <Items/>
+      </div>
+      )
 }
 
 export default App;

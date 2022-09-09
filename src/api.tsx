@@ -10,10 +10,10 @@ const config = {
 const axiosInstance = axios.create(config);
 
 export const api = {
-    loadItems () {
-        return axiosInstance.get('users?count=50/').then(res => res.data)
+    loadItems() {
+        return axiosInstance.get('users?count=50/')
     },
-    deleteItem (id: number) {
+    deleteItem(id: number) {
         return axiosInstance.delete('users/items/' + id)
     }
 }
