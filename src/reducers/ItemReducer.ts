@@ -31,12 +31,23 @@ export const itemDeletedAC = (id: number) => ({type: "delete_item", id})
 export const changeStatusAC = (status: string) => ({type: "status_changed", status})
 export const setErrorAC = (error: string) => ({type: "error_changed", error})
 
-export const loadItemsTC = () => (dispatch: Dispatch) => {
+export const loadItemsTC = (search: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusAC("loading"))
-    api.loadItems().then((res) => {
+    api.loadItems(search).then((res) => {
         dispatch(changeStatusAC("success"))
         dispatch(itemsLoadedAC(res.data.items))
     }).catch(err => {
+        dispatch(changeStatusAC("error"))
+        dispatch(setErrorAC(err))
+    })
+}
+
+export const fakeDeleteItemTC = (id: number) => (dispatch: Dispatch) => {
+    dispatch(changeStatusAC("loading"))
+    api.deleteItem(id).then((res) => {
+        dispatch(changeStatusAC("success"))
+    }).catch(err => {
+        dispatch(itemDeletedAC(id))
         dispatch(changeStatusAC("error"))
         dispatch(setErrorAC(err))
     })

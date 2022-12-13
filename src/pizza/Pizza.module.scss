@@ -1,0 +1,40 @@
+.main {
+  background-color: aliceblue;
+  width: 350px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .view {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    height: 30px;
+    margin: 10px 0;
+    .active {
+      background-color: white;
+    }
+  }
+
+  .size {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    width: 95%;
+    height: 40px;
+    .active {
+      background-color: white;
+    }
+  }
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+  }
+}
