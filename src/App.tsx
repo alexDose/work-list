@@ -1,20 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import {Items} from "./Items";
-import {Pizza} from "./pizza/Pizza";
-import {Search} from "./search/Search";
+import {Route, Routes} from "react-router-dom";
+import {Main} from "./features/main/Main";
+import {First} from "./features/1";
+import {Second} from "./features/2";
 
 function App() {
-    const [value, setValue] = useState('')
 
     return (
-        <div>
-            <Search value={value} setValue={setValue}/>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <Items search={value}/>
-                <Pizza/>
-            </div>
-        </div>
+        <Routes>
+            <Route path={'/'} element={<Main/>}/>
+            <Route path={'/1'} element={<First/>}/>
+            <Route path={'/2'} element={<Second/>}/>
+        </Routes>
     )
 }
 

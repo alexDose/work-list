@@ -1,6 +1,8 @@
-.main {
-  text-align: center;
-  input {
+.container {
+  display: flex;
+  justify-content: center;
+  .main {
+    position: relative;
     width: 300px;
     padding: 12px 15px;
     border: 1px solid rgb(0, 0, 0, 0.1);
@@ -8,6 +10,28 @@
     margin: 20px 0;
     &:hover {
       border: 1px solid rgb(0, 0, 0, 0.2);
+    }
+    img {
+      width: 30px;
+      position: absolute;
+      top: 8px;
+    }
+    .imgSearch {
+      left: 8px;
+      opacity: 0.4;
+    }
+    .imgClose {
+      right: 8px;
+      opacity: 0.4;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    input {
+      margin-left: 35px;
+      outline: none;
+      border: none;
+      font-size: 16px;
     }
   }
 }

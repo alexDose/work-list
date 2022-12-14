@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
-import {api} from "./api";
-import {useDispatch, useSelector} from "react-redux";
-import {fakeDeleteItemTC, itemDeletedAC, loadItemsTC} from "./reducers/ItemReducer";
-import {AppDispatch, AppRootStateType} from "./reducers/store";
+import {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {fakeDeleteItemTC, loadItemsTC} from "./reducers/ItemReducer";
+import {AppRootStateType, useAppDispatch} from "./reducers/store";
 
 export type ItemType = {
     name: string,
@@ -16,37 +15,28 @@ export type ItemType = {
     followed: boolean
 }
 
-type ItemsType = {
-    search: string
-}
-
-export const Items = ({search}: ItemsType) => {
-    /*
-        const [items, setItems] = useState<ItemType[]>([])
-        const [status, setStatus] = useState('')
-        const [error, setError] = useState('')
-    */
+export const Items = () => {
+    const searchValue = useSelector<AppRootStateType, string>(state => state.search.searchValue)
     const items = useSelector<AppRootStateType, ItemType[]>(state => state.data.items)
     const status = useSelector<AppRootStateType, string>(state => state.data.status)
     const error = useSelector<AppRootStateType, string>(state => state.data.error)
 
-    const dispatch: AppDispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(loadItemsTC(search))
-    }, [search])
+        dispatch(loadItemsTC(searchValue))
+    }, [searchValue])
 
     const deleteItem = (id: number) => {
         dispatch(fakeDeleteItemTC(id))
     }
 
     return (
-        <div>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
             {status === 'loading' && <span>isLoading...</span>}
             {error && <span>{error}</span>}
             <ul>
-                {items.map(i => <Item key={i.id} item={i} deleteItem={deleteItem}/>
-                )}
+                {items.map(i => <Item key={i.id} item={i} deleteItem={deleteItem}/>)}
             </ul>
         </div>
     )

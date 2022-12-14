@@ -1,0 +1,17 @@
+.back {
+  text-align: center;
+  width: 100px;
+  text-decoration: none;
+  color: darkred;
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  padding: 12px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+}

@@ -1,13 +1,18 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
 import {ItemsReducer} from "./ItemReducer";
-import thunk from "redux-thunk";
+import thunk, {ThunkDispatch} from "redux-thunk";
+import {SearchReducer} from "../search/SearchReducer";
+import {useDispatch} from "react-redux";
 
 const rootReducer = combineReducers({
-    data: ItemsReducer
+    data: ItemsReducer,
+    search: SearchReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
-export type AppDispatch = typeof store.dispatch
+type ThunkDispatchType = ThunkDispatch<AppRootStateType, any, AnyAction>
+
+export const useAppDispatch = () => useDispatch<ThunkDispatchType>()

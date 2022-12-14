@@ -3,6 +3,10 @@ import {Dispatch} from "redux";
 import {api} from "../api";
 
 type InitialStateType = typeof initialState
+type ItemsActionType = ReturnType<typeof itemsLoadedAC>
+    | ReturnType<typeof itemDeletedAC>
+    | ReturnType<typeof changeStatusAC>
+    | ReturnType<typeof setErrorAC>
 
 const initialState = {
     items: [] as Array<ItemType>,
@@ -10,7 +14,7 @@ const initialState = {
     error: ""
 }
 
-export const ItemsReducer = (state:InitialStateType = initialState, action: any) => {
+export const ItemsReducer = (state: InitialStateType = initialState, action: ItemsActionType) => {
     switch (action.type) {
         case "status_changed":
             return {...state, status: action.status}
@@ -26,10 +30,10 @@ export const ItemsReducer = (state:InitialStateType = initialState, action: any)
     }
 }
 
-export const itemsLoadedAC = (items: Array<ItemType>) => ({type: "items_loaded", items})
-export const itemDeletedAC = (id: number) => ({type: "delete_item", id})
-export const changeStatusAC = (status: string) => ({type: "status_changed", status})
-export const setErrorAC = (error: string) => ({type: "error_changed", error})
+export const itemsLoadedAC = (items: Array<ItemType>) => ({type: "items_loaded", items} as const)
+export const itemDeletedAC = (id: number) => ({type: "delete_item", id} as const)
+export const changeStatusAC = (status: string) => ({type: "status_changed", status} as const)
+export const setErrorAC = (error: string) => ({type: "error_changed", error} as const)
 
 export const loadItemsTC = (search: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusAC("loading"))
