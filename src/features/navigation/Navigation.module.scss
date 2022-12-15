@@ -4,21 +4,7 @@
   padding: 0 175px;
   background: #FFFFFF;
   border-radius: 15px;
-
-  .active {
-    //padding: 17px 0 14px ;
-    //border-bottom: 3px solid #2F79E9;
-    //
-    &::before {
-      content: '';
-      position: absolute;
-      width: 157px;
-      height: 3px;
-      background: #2F79E9;
-      transform: translate(-35%, 0);
-      bottom: 0;
-    }
-  }
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
 
   ul {
     height: 54px;
@@ -27,6 +13,19 @@
     align-items: center;
     list-style-type: none;
 
+    .active {
+      padding: 17px 0 14px ;
+      border-bottom: 3px solid #2F79E9;
+      //
+    //  &::before {
+    //    content: '';
+    //    position: absolute;
+    //    width: 157px;
+    //    height: 3px;
+    //    background: #2F79E9;
+    //    transform: translate(-50%, 0);
+    //    bottom: 0;
+      }
     li {
       width: 194px;
       cursor: pointer;
